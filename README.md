@@ -11,6 +11,7 @@ You can host this HTML file using GitHub Pages, Netlify, or Vercel.
 ---
 
 ## 📁 Project Structure
+├── index.html # Main portfolio file
 ---
 
 ## 💡 Features
