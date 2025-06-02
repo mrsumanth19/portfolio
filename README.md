@@ -45,9 +45,8 @@
 
 ## 📄 License
 
-This project is licensed for personal use. Attribution appreciated if reused or modified.
+This project is licensed under the [MIT License](LICENSE) © 2025 Sumanth Vanapalli.
 
----
 
 ## 🚀 Hosting Suggestions
 
