@@ -1,4 +1,16 @@
+# Sumanth Vanapalli – Portfolio Website
 
+This is a responsive, dark-themed personal portfolio website designed and developed by **Sumanth Vanapalli**, a passionate Full Stack Developer and Computer Science Student at QIS College of Engineering and Technology.
+
+## 🌐 Live Demo
+
+sumanth-vanapalli-portfolio.netlify.app
+
+You can host this HTML file using GitHub Pages, Netlify, or Vercel.
+
+---
+
+## 📁 Project Structure
 ---
 
 ## 💡 Features
