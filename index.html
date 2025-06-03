@@ -25,6 +25,23 @@
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
+        
+
+        body.light-mode {
+            --primary: #4a4a4a;
+            --secondary: #0077b5;
+            --text-primary: #111;
+            --text-secondary: #444;
+            --text-muted: #888;
+            --bg-primary: #ffffff;
+            --bg-secondary: rgba(0, 0, 0, 0.02);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, #e0e0e0 0%, #c5c5c5 100%);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
@@ -32,6 +49,28 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
+        body.light-mode .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+            body.light-mode .btn-secondary {
+            background: transparent;
+            color: #333;
+            border: 2px solid #ccc;
+        }
+
+            body.light-mode .btn-secondary:hover {
+            background: #f5f5f5;
+            color: #000;
+        }
+
+            body {
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
 
         /* Header */
         .header {
@@ -230,42 +269,42 @@
         }
 
         .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        justify-content: center; /* center instead of start */
+    }
+
 
         .skill-tag {
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            color: var(--primary);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            opacity: 0;
+            position: relative;
         }
 
-        .skill-tag:hover {
-            background: rgba(102, 126, 234, 0.2);
-            transform: translateY(-2px);
+        .skill-tag:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            border-radius: 5px;
+            white-space: nowrap;
+            opacity: 0.9;
+            z-index: 10;
         }
+
 
         .about-image {
             position: relative;
         }
 
         .about-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: 20px;
-            bottom: 20px;
-            background: var(--gradient);
-            border-radius: 20px;
-            z-index: -1;
+            content: none; /* disables the pseudo-element completely */
         }
+
 
         .about-image img {
             width: 100%;
@@ -274,6 +313,7 @@
         }
 
         /* Projects Section */
+
         .projects {
             padding: 6rem 2rem;
             background: linear-gradient(180deg, transparent 0%, rgba(102, 126, 234, 0.02) 100%);
@@ -300,6 +340,10 @@
             position: relative;
             overflow: hidden;
             opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
 
         .project-card::before {
@@ -366,7 +410,52 @@
             color: var(--secondary);
         }
 
+        .project-image-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .project-image-clear {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-links-top {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .project-links-top a {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .project-links-top a:hover {
+            background: var(--secondary);
+        }
+
+
         /* Skills Section */
+
+        #skills .skills {
+            justify-content: center;
+        }
+
         .skills.section {
             background: linear-gradient(180deg, rgba(102, 126, 234, 0.02) 0%, transparent 100%);
         }
@@ -421,6 +510,27 @@
             color: var(--primary);
             margin-right: 0.5rem;
         }
+
+        .skill-tag {
+            position: relative;
+        }
+
+        .skill-tag:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            border-radius: 5px;
+            white-space: nowrap;
+            opacity: 0.9;
+            z-index: 10;
+        }
+
 
         /* Certifications Section */
         .certifications {
@@ -949,6 +1059,33 @@
 
         
         /* Skills Section - Horizontal Layout */
+
+        .skill-tag {
+            width: 60px;
+            height: 60px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: white;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: default;
+        }
+        .skill-tag:hover {
+            transform: scale(1.3);
+        }
+
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: start;
+        }
+
+
         .skills-section {
             padding: 6rem 2rem;
             background: linear-gradient(180deg, rgba(102, 126, 234, 0.02) 0%, transparent 100%);
@@ -1155,21 +1292,47 @@
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .social-link {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease, transform 0.3s ease;
+            position: relative;
             text-decoration: none;
         }
 
         .social-link:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
+            transform: scale(1.2);
+            color: white;
         }
+
+        .social-link.email:hover {
+            background: #d93025; /* Gmail red */
+        }
+
+        .social-link.linkedin:hover {
+            background: #0077b5; /* LinkedIn blue */
+        }
+
+        .social-link.github:hover {
+            background: #24292e; /* GitHub black */
+        }
+
+        .social-link.hackerrank:hover {
+            background: #2ec866; /* HackerRank green */
+        }
+
 
         /* Scroll indicator */
         .scroll-indicator {
@@ -1377,6 +1540,23 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+            /* Theme toggle button */
+            #theme-toggle {
+                background: none;
+                border: none;
+                font-size: 1.4rem;
+                color: var(--text-primary);
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 50%;
+                margin-left: 1rem;
+                transition: background 0.3s ease;
+            }
+
+            #theme-toggle:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
         }
     </style>
 </head>
@@ -1391,14 +1571,22 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">Sumanth Vanapalli</div>
+
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
+
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" title="Toggle Theme">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </button>
+            </nav>
+
     </header>
 
     <!-- Hero Section -->
@@ -1429,18 +1617,36 @@
                 With a strong academic background and dedication to continuous learning, I strive to combine theoretical knowledge with practical implementation. I'm constantly exploring new technologies and frameworks to expand my skillset.
             </p>
             <div class="skills">
-                <span class="skill-tag animate-stagger">HTML</span>
-                <span class="skill-tag animate-stagger">CSS</span>
-                <span class="skill-tag animate-stagger">JavaScript</span>
-                <span class="skill-tag animate-stagger">Python</span>
-                <span class="skill-tag animate-stagger">SQL</span>
-                <span class="skill-tag animate-stagger">Flask</span>
-                <span class="skill-tag animate-stagger">MongoDB</span>
-                <span class="skill-tag animate-stagger">Git</span>
-            </div>
+            <span class="skill-tag animate-stagger" title="HTML" style="background-color: #e34c26;">
+                <i class="fab fa-html5"></i>
+            </span>
+            <span class="skill-tag animate-stagger" title="CSS" style="background-color: #2965f1;">
+                <i class="fab fa-css3-alt"></i>
+            </span>
+            <span class="skill-tag animate-stagger" title="JavaScript" style="background-color: #f0db4f; color: #000;">
+                <i class="fab fa-js"></i>
+            </span>
+            <span class="skill-tag animate-stagger" title="Python" style="background-color: #3776ab;">
+                <i class="fab fa-python"></i>
+            </span>
+            <span class="skill-tag animate-stagger" title="SQL" style="background-color: #f29111;">
+                <i class="fas fa-database"></i>
+            </span>
+            <span class="skill-tag animate-stagger" title="Flask" style="background-color: #000;">
+                <i class="fas fa-flask"></i>
+            </span>
+            <span class="skill-tag animate-stagger" title="MongoDB" style="background-color: #4db33d;">
+                <i class="fas fa-leaf"></i>
+            </span>
+            <span class="skill-tag animate-stagger" title="Git" style="background-color: #f1502f;">
+                <i class="fab fa-git-alt"></i>
+            </span>
+        </div>
+
+
         </div>
         <div class="about-image animate-fade-in-right">
-            <img src="https://ibb.co/TDTJG5v7" alt="Sumanth Vanapalli">
+            <img src="https://i.ibb.co/7tMqFSMB/Smart-Select-20250603-213200-Picsart.png" alt="Sumanth Vanapalli">
         </div>
     </div>
 </section>
@@ -1507,89 +1713,128 @@
     <!-- Skills Section -->
 <section id="skills" class="skills section">
     <div class="container">
-        <h2 class="section-title">My Skills</h2>
+        <h2 class="section-title">Skills</h2>
         <div class="skills-container">
+            
+            <!-- Front-End Development -->
             <div class="skill-card">
                 <div class="skill-icon">
                     <i class="fas fa-code"></i>
                 </div>
                 <h3 class="skill-title">Front-End Development</h3>
-                <ul class="skill-list">
-                    <li><i class="fab fa-html5"></i> HTML5</li>
-                    <li><i class="fab fa-css3-alt"></i> CSS3</li>
-                    <li><i class="fab fa-js-square"></i> JavaScript</li>
-                    <li><i class="fas fa-mobile-alt"></i> Responsive Design</li>
-                </ul>
+                <div class="skills">
+                    <span class="skill-tag" title="HTML5" style="background-color: #e34c26;">
+                        <i class="fab fa-html5"></i>
+                    </span>
+                    <span class="skill-tag" title="CSS3" style="background-color: #2965f1;">
+                        <i class="fab fa-css3-alt"></i>
+                    </span>
+                    <span class="skill-tag" title="JavaScript" style="background-color: #f0db4f; color: #000;">
+                        <i class="fab fa-js-square"></i>
+                    </span>
+                    <span class="skill-tag" title="Responsive Design" style="background-color: #ff7f50;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </span>
+                </div>
             </div>
+
+            <!-- Databases -->
             <div class="skill-card">
                 <div class="skill-icon">
                     <i class="fas fa-database"></i>
                 </div>
                 <h3 class="skill-title">Databases</h3>
-                <ul class="skill-list">
-                    <li><i class="fas fa-database"></i> SQL</li>
-                    <li><i class="fas fa-leaf"></i> MongoDB</li>
-                </ul>
+                <div class="skills">
+                    <span class="skill-tag" title="SQL" style="background-color: #f29111;">
+                        <i class="fas fa-database"></i>
+                    </span>
+                    <span class="skill-tag" title="MongoDB" style="background-color: #4db33d;">
+                        <i class="fas fa-leaf"></i>
+                    </span>
+                </div>
             </div>
+
+            <!-- Programming -->
             <div class="skill-card">
                 <div class="skill-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
                 <h3 class="skill-title">Programming</h3>
-                <ul class="skill-list">
-                    <li><i class="fab fa-python"></i> Python</li>
-                    <li><i class="fab fa-java"></i> Java (Basic)</li>
-                </ul>
+                <div class="skills">
+                    <span class="skill-tag" title="Python" style="background-color: #3776ab;">
+                        <i class="fab fa-python"></i>
+                    </span>
+                    <span class="skill-tag" title="Java" style="background-color: #f89820;">
+                        <i class="fab fa-java"></i>
+                    </span>
+                </div>
             </div>
+
+            <!-- Tools & Technologies -->
             <div class="skill-card">
                 <div class="skill-icon">
                     <i class="fas fa-tools"></i>
                 </div>
                 <h3 class="skill-title">Tools & Technologies</h3>
-                <ul class="skill-list">
-                    <li><i class="fas fa-code"></i> VS Code</li>
-                    <li><i class="fab fa-github"></i> Git & GitHub</li>
-                    <li><i class="fas fa-desktop"></i> Eclipse</li>
-                    <li><i class="fas fa-sms"></i> Twilio API</li>
-                </ul>
+                <div class="skills">
+                    <span class="skill-tag" title="VS Code" style="background-color: #007ACC;">
+                        <i class="fas fa-code"></i>
+                    </span>
+                    <span class="skill-tag" title="GitHub" style="background-color: #333;">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span class="skill-tag" title="Eclipse" style="background-color: #2c2255;">
+                        <i class="fas fa-desktop"></i>
+                    </span>
+                    <span class="skill-tag" title="Twilio API" style="background-color: #f22f46;">
+                        <i class="fas fa-sms"></i>
+                    </span>
+                </div>
             </div>
+
         </div>
     </div>
 </section>
 
     <!-- Projects Section -->
-<section class="projects" id="projects">
+    <section class="projects" id="projects">
     <div class="projects-container">
         <h2 class="section-title animate-fade-in-up">Featured Projects</h2>
         <div class="projects-grid">
+
+            <!-- Project 1 -->
             <div class="project-card animate-fade-in-scale">
-                <div class="project-image" style="background-image: url('/api/placeholder/600/400');">
-                    <div class="project-links">
-                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                        <a href="https://github.com/mrsumanth19/Learners-Academy" class="project-link"><i class="fab fa-github"></i></a>
+                <div class="project-image-wrapper">
+                    <img src="https://i.ibb.co/zHT4Zf9c/Whats-App-Image-2025-06-03-at-22-27-02-96a39cfc.jpg" alt="Medvice Screenshot" class="project-image-clear">
+                    <div class="project-links-top">
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                        <a href="https://github.com/mrsumanth19/Medvice"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                <h3>Learners Academy</h3>
-                <p>An interactive learning platform designed to provide quality education resources with user-friendly interface and engaging content.</p>
+                <h3>Medvice</h3>
+                <p>A medical web app that predicts diseases from user-input symptoms using ML and provides medicine, workout, diet, and alert recommendations with email/SMS reminders.</p>
                 <div class="project-tags">
-                    <span class="project-tag">HTML</span>
-                    <span class="project-tag">CSS</span>
-                    <span class="project-tag">JavaScript</span>
+                    <span class="project-tag">Flask</span>
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">SQLite</span>
+                    <span class="project-tag">Machine Learning</span>
                 </div>
                 <div class="project-links">
                     <a href="#" class="project-link">Live Demo</a>
-                    <a href="https://github.com/mrsumanth19/Learners-Academy" class="project-link">Source Code</a>
+                    <a href="https://github.com/mrsumanth19/Medvice" class="project-link">Source Code</a>
                 </div>
             </div>
 
+            <!-- Project 2 -->
             <div class="project-card animate-fade-in-scale">
-                <div class="project-image" style="background-image: url('/api/placeholder/600/400');">
-                    <div class="project-links">
-                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                        <a href="https://github.com/mrsumanth19/agriweb" class="project-link"><i class="fab fa-github"></i></a>
+                <div class="project-image-wrapper">
+                    <img src="https://i.ibb.co/cKnYm996/Screenshot-2025-03-19-092614.png" alt="Agri Web Screenshot" class="project-image-clear">
+                    <div class="project-links-top">
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                        <a href="https://github.com/mrsumanth19/agriweb"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
-                <h3>AGRI WEB</h3>
+                <h3>Agri Web</h3>
                 <p>Agriculture platform providing crop data, field conditions, and weather forecasts with SMS notification integration via Twilio API.</p>
                 <div class="project-tags">
                     <span class="project-tag">Python</span>
@@ -1602,11 +1847,13 @@
                 </div>
             </div>
 
+            <!-- Project 3 -->
             <div class="project-card animate-fade-in-scale">
-                <div class="project-image" style="background-image: url('/api/placeholder/600/400');">
-                    <div class="project-links">
-                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                        <a href="https://github.com/mrsumanth19/learnnexus" class="project-link"><i class="fab fa-github"></i></a>
+                <div class="project-image-wrapper">
+                    <img src="https://i.ibb.co/7xrkwT5J/Screenshot-2025-04-20-141424.png" alt="Learn Nexus Screenshot" class="project-image-clear">
+                    <div class="project-links-top">
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                        <a href="https://github.com/mrsumanth19/learnnexus"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 <h3>Learn Nexus</h3>
@@ -1622,9 +1869,11 @@
                     <a href="https://github.com/mrsumanth19/learnnexus" class="project-link">Source Code</a>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
+
 
 
 
@@ -1734,25 +1983,47 @@
     <!-- Footer -->
 <footer class="footer">
     <div class="social-links">
-        <a href="mailto:sumanthvanapalli194@gmail.com" class="social-link" title="Email">
-            <i class="fa-solid fa-envelope"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/sumanth-vanapalli" target="_blank" class="social-link" title="LinkedIn">
-            <i class="fa-brands fa-linkedin"></i>
-        </a>
-        <a href="https://github.com/mrsumanth19" target="_blank" class="social-link" title="GitHub">
-            <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://www.hackerrank.com/profile/sumanthvanapall2" target="_blank" class="social-link" title="HackerRank">
-            <i class="fa-solid fa-trophy"></i>
-        </a>
-    </div>
+    <a href="mailto:sumanthvanapalli194@gmail.com" class="social-link email" title="Email">
+        <i class="fa-solid fa-envelope"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/sumanth-vanapalli" target="_blank" class="social-link linkedin" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://github.com/mrsumanth19" target="_blank" class="social-link github" title="GitHub">
+        <i class="fab fa-github"></i>
+    </a>
+    <a href="https://www.hackerrank.com/profile/sumanthvanapall2" target="_blank" class="social-link hackerrank" title="HackerRank">
+        <i class="fas fa-trophy"></i>
+    </a>
+</div>
+
     <p style="color: #888;">&copy; 2025 Sumanth Vanapalli. All rights reserved.</p>
 </footer>
 
 
 
     <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'light');
+            } else {
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark');
+            }
+        });
+
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
